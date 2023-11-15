@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!--    Eli: Changed the below from `#FFF` to `#FF694E` to try update splash background-->
+    <color name="colorLaunchScreen">#FF694E</color>
+    <!--  Eli: Added the below for an app icon background colour.  -->
+<!--    <color name="ic_launcher_background">#FF694E</color>-->
+</resources>

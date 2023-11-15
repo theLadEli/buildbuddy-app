@@ -1,0 +1,152 @@
+{
+    "$jason": {
+        "head": {
+            "title": "BuildBuddy",
+            "actions": {
+                "fetchContacts": {
+                    "type": "$util.addressbook",
+                    "success": {
+                        "type": "$agent.request",
+                        "options": {
+                            "id": "$webContainer",
+                            "method": "receiveContacts",
+                            "params": [
+                                "{{$jason}}"
+                            ]
+                        }
+                    },
+                    "error": {
+                        "type": "$util.toast",
+                        "options": {
+                            "text": "Please enable applocation services to continue."
+                        }
+                    }
+                },
+                "whatsapp": {
+                    "type": "$agent.request",
+                    "options": {
+                        "id": "$webContainer",
+                        "method": "whatsappChat"
+                    },
+                    "success": {
+                        "type": "$util.openWhatsapp",
+                        "options": {
+                            "target": "{{$jason}}",
+                            "message": "Hello"
+                        }
+                    }
+                },
+                "shareText": {
+                    "type": "$agent.request",
+                    "options": {
+                        "id": "$webContainer",
+                        "method": "shareText"
+                    },
+                    "success": {
+                        "type": "$util.share",
+                        "options": {
+                            "items": [{
+                                "type": "text",
+                                "text": "{{$jason}}"
+                            }]
+                        }
+                    }
+                },
+                "fetchGPS": {
+                    "type": "$geo.get",
+                    "options": {
+                        "distance": "1000"
+                    },
+                    "success": {
+                        "type": "$agent.request",
+                        "options": {
+                            "id": "$webContainer",
+                            "method": "receiveGPS",
+                            "params": [
+                                "{{$jason.coord}}"
+                            ]
+                        }
+                    },
+                    "error": {
+                        "type": "$agent.request",
+                        "options": {
+                            "id": "$webContainer",
+                            "method": "receiveGPS",
+                            "params": [
+                                "0,0"
+                            ]
+                        },
+                        "success": {
+                            "type": "$util.alert",
+                            "options": {
+                                "title": "Error",
+                                "description": "Please enable location services to continue."
+                            }
+                        }
+                    }
+                },
+                "shareImage": {
+                    "type": "$agent.request",
+                    "options": {
+                        "id": "$webContainer",
+                        "method": "shareImage"
+                    },
+                    "success": {
+                        "type": "$util.share",
+                        "options": {
+                            "items": [{
+                                "type": "image",
+                                "url": "{{$jason}}"
+                            }]
+                        }
+                    }
+                },
+                "getContacts": {
+                    "type": "$util.addressbook",
+                    "success": {
+                        "type": "$agent.request",
+                        "options": {
+                            "id": "$webContainer",
+                            "method": "receiveContacts",
+                            "params": [
+                                "{{$jason}}"
+                            ]
+                        }
+                    },
+                    "error": {
+                        "type": "$util.alert",
+                        "options": {
+                            "text": "Please enable contacts permission in settings."
+                        }
+                    }
+                },
+                "onesignalSetExternalUserid": {
+                    "type": "$agent.request",
+                    "options": {
+                        "id": "$webContainer",
+                        "method": "getExternalID"
+                    },
+                    "success": {
+                        "type": "$onesignal.set",
+                        "options": {
+                            "externalId": "{{$jason}}"
+                        }
+                    }
+                }
+            }
+        },
+        "body": {
+            "background": {
+                "type": "html",
+                "url": "https://app.buildbuddy.co/register",
+                "style": {
+                    "background": "#F2F2F5",
+                    "progress": "#57b3bd"
+                },
+                "action": {
+                    "type": "$default"
+                }
+            }
+        }
+    }
+}
